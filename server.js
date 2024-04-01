@@ -1,15 +1,54 @@
 const express = require("express");
 const app = express();
 const Joi = require("joi");
+const multer = require('multer');
+const cors = require('cors');
+
 app.use(express.static("public"));
 app.use(express.json());
+app.use(cors());
 
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
-})
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/images');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
 
 app.get("/api/crafts", (req, res) => {
     res.send(crafts);
+});
+
+app.post("/api/crafts", upload.single('image'), (req, res) => {
+    const schema = Joi.object({
+        name: Joi.string().required(),
+        description: Joi.string().required(),
+        supplies: Joi.array().items(Joi.string().required()).required(),
+    });
+
+    const { error } = schema.validate(req.body);
+
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
+
+    const newCraft = {
+        name: req.body.name,
+        image: req.file.filename,
+        description: req.body.description,
+        supplies: req.body.supplies
+    };
+
+    crafts.push(newCraft);
+    res.send(newCraft);
+});
+
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/index.html");
 })
 
 let crafts = [
@@ -276,5 +315,5 @@ let crafts = [
 ]
 
 app.listen(3000, () => {
-
+    console.log("Running");
 });

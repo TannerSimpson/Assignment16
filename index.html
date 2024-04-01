@@ -6,6 +6,7 @@
     <body>
         <div id="container">
             <h1>Craft Ideas</h1>
+            <button id="addCraftBtn">+ Add Craft</button>
             <div id="crafts-container"></div>
         </div>
     
@@ -19,6 +20,27 @@
                 <ul id="popup-supplies"></ul>
             </div>
         </div>
+
+        <!-- Add Craft Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Craft</h2>
+            <form id="addCraftForm" enctype="multipart/form-data">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required><br>
+                <label for="description">Description:</label><br>
+                <textarea id="description" name="description" required></textarea><br>
+                <label for="image">Select An Image:</label><br>
+                <input type="file" id="image" name="image" required accept="image/*"><br>
+                <label for="supplies">Supplies:</label><br>
+                <input type="text" id="supplies" name="supplies[]" required><br>
+                <button type="button" id="addSupply">Add Supply</button><br>
+                <button type="submit">Save</button>
+                <button type="button" class="close">Cancel</button>
+            </form>
+        </div>
+    </div>
 
         <script src="script.js"></script>
     </body>
