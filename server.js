@@ -19,6 +19,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+let crafts = require("./public/json/crafts.json");
+
 let crafts = [
     {
         "name": "Beaded JellyFish",

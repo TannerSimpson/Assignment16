@@ -5,8 +5,7 @@
     </head>
     <body>
         <div id="container">
-            <h1>Craft Ideas</h1>
-            <button id="addCraftBtn">+ Add Craft</button>
+            <h1>Craft Ideas<a href="#" id="addlink">+</a></h1>
             <div id="crafts-container"></div>
         </div>
     
@@ -22,25 +21,39 @@
         </div>
 
         <!-- Add Craft Modal -->
-    <div id="addModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Add New Craft</h2>
-            <form id="addCraftForm" enctype="multipart/form-data">
-                <label for="name">Name:</label><br>
-                <input type="text" id="name" name="name" required><br>
-                <label for="description">Description:</label><br>
-                <textarea id="description" name="description" required></textarea><br>
-                <label for="image">Select An Image:</label><br>
-                <input type="file" id="image" name="image" required accept="image/*"><br>
-                <label for="supplies">Supplies:</label><br>
-                <input type="text" id="supplies" name="supplies[]" required><br>
-                <button type="button" id="addSupply">Add Supply</button><br>
-                <button type="submit">Save</button>
-                <button type="button" class="close">Cancel</button>
-            </form>
+        <div id="myModaladd" class="modaladd">
+            <div id="modaladd-content" class="modaladd-content">
+            <span class="close2">&times;</span>
+                <p>
+                    <label for="name">Craft Name:</label>
+                    <input
+                      id="name"
+                      type="text"
+                      placeholder="name"
+                      name="name"
+                      required
+                    />
+                  </p>
+                  <p>
+                    <label for="description">Description:</label>
+                    <input id="description" type="description" name="description" required />
+                  </p>
+                  <p>
+                    <label for="imagebutton">Upload Image:</label>
+                    <input type="file" id="imagebutton" name="imagebutton" accept="image/*" />
+                </p>
+                  <p>
+                    <button id="supplybutton" type="supplybutton">Add Supply</button>
+                  </p> 
+                  <section id="supply-container"></section>
+                  <p>
+                    <button id="savebutton" type="savebutton">Save</button>
+                  </p> 
+                  <p>
+                    <button id="cancelbutton" type="cancelbutton">Cancel</button>
+                </p> 
+            </div>
         </div>
-    </div>
 
         <script src="script.js"></script>
     </body>
